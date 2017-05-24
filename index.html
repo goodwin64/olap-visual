@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="OlapVisual">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://rawgit.com/angular/bower-angular/master/angular.min.js"></script>
+
+    <title>OLAP visual</title>
+</head>
+
+<body ng-controller="mainController">
+
+<div id="field">
+    <div ng-repeat="meter in data
+                  | filter: filterMetersFn"
+         ng-style="{
+               'background-color': '' + meter.color
+               }"
+         class="dot left-{{meter.coordX}} top-{{meter.coordY}} radius-{{meter.radius}}"
+         ng-click="setMeter(meter)"
+    >
+    </div>
+</div>
+
+<div id="options-for-current"
+     ng-show="selectedMeter">
+
+    <p>Details</p>
+
+    <br>coordX:
+    <input type="number"
+           ng-model="selectedMeter.coordX"
+           min="1"
+           max="100">
+
+    <br>coordY:
+    <input type="number"
+           ng-model="selectedMeter.coordY"
+           min="1"
+           max="100">
+
+    <br>radius:
+    <input type="number"
+           ng-model="selectedMeter.radius"
+           min="1"
+           max="50">
+
+    <br>color:
+    <input type="color"
+           ng-model="selectedMeter.color">
+
+    <br>date:
+    <input type="date"
+           ng-model="selectedMeter.created">
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
